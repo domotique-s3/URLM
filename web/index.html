@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>URL Maker</title>
+    <meta charset="UTF-8">
+
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+
+	<!-- JS Dependencies -->
+	<script type="text/javascript" src="../dependencies/jquery-min.js"></script>
+	<script type="text/javascript" src="../dependencies/momentJS/moment.min.js"></script>
+	<script type="text/javascript" src="../dependencies/momentJS/fr.js"></script>
+	<script type="text/javascript" src="../dependencies/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../dependencies/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../dependencies/clipboard.min.js"></script>
+
+	<!-- CSS Dependencies -->
+	<link rel="stylesheet" type="text/css" href="../dependencies/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../dependencies/bootstrap/css/bootstrap-datetimepicker.css">
+
+    <!-- Class JS -->
+    <script type="text/javascript" src="../js/prototype.js"></script>
+    <script type="text/javascript" src="../js/CookieManager.js"></script>
+    <script type="text/javascript" src="../js/PageBuilder.js"></script>
+    <script type="text/javascript" src="../js/DisplayManager.js"></script>
+    <script type="text/javascript" src="../js/QueryMaker.js"></script>
+
+
+    <!-- Main Script JS -->
+    <script type="text/javascript" src="../js/main.js"></script>
+
+</head>
+<body>
+	<section class="" id="maker">
+		<h2 class="col-xs-offset-1">Query Maker</h2>
+		<hr>
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label for="maker_value-column-input" class="col-xs-4 control-label">Value Column</label>
+				<div class="col-xs-6">
+					<input type="text" class="form-control" id="maker_value-column-input" placeholder="Ex: value">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="maker_sensor-column-input" class="col-xs-4 control-label">Sensor Column</label>
+				<div class="col-xs-6">
+					<input type="text" class="form-control" id="maker_sensor-column-input" placeholder="Ex: sensor_id">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="maker_timestamp-column-input" class="col-xs-4 control-label">Timestamp Column</label>
+				<div class="col-xs-6">
+					<input type="text" class="form-control" id="maker_timestamp-column-input" placeholder="Ex: timestamp">
+				</div>
+			</div>
+
+			<div class="bg-info">
+				<div class="form-group">
+					<label for="maker_table-name-input" class="col-xs-4 control-label">Table Name</label>
+					<div class="col-xs-6"><input type="text" class="form-control" id="maker_table-name-input" placeholder="Ex: measurments"></div>
+					<div data-toggle="tooltip" title="Add a new Table" class="col-xs-1"><div class="add-table btn btn-default glyphicon glyphicon-plus"></div></div>
+				</div>
+				<div class="form-group">
+					<h5 class="col-xs-4 control-label">Sensors</h5>
+				</div>
+				<div class="form-group maker_sensor">
+					<div class="col-xs-3 col-xs-offset-4"><input type="text" class="form-control maker_sensor-input" placeholder="Ex: 72"></div>
+					<div class="col-xs-3">
+						<select class="form-control maker_sensor-select">
+		                    <option value="default"></option>
+		                    <option value="column">Column</option>
+		                    <option value="bar">Bar</option>
+		                    <option value="binary">Binary</option>
+		                    <option value="line">Line</option>
+						</select>
+					</div>
+					<div data-toggle="tooltip" title="Add a new Sensor" class="col-xs-1"><div class="add-sensor btn btn-default glyphicon glyphicon-plus"></div></div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-xs-4 control-label">Start Timestamp</label>
+				<div class='col-xs-8 input-group date' id='datetimepicker_start'>
+					<div class="col-xs-9"><input class="form-control" id="maker_date-start-input" type='text' placeholder="Ex: 1453059769990"/></div>
+					<div data-toggle="tooltip" title="Open calendar" class="col-xs-1 button-datetimepicker">
+						<div id="maker_timestamp-start-button" class="btn btn-primary glyphicon glyphicon-th-large"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-xs-4 control-label">End Timestamp</label>
+				<div class='col-xs-8 input-group date' id='datetimepicker_end'>
+					<div class="col-xs-9"><input class="form-control" id="maker_date-end-input" type='text' placeholder="Ex: 1453059769990"/></div>
+					<div class="col-xs-1 button-datetimepicker" data-toggle="tooltip" title="Open calendar"><div id="maker_timestamp-end-button" class="btn btn-primary glyphicon glyphicon-th-large"></div></div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-xs-offset-2 col-xs-6">
+					<div id="maker_validate" class="btn btn-default btn-success" data-clipboard-target="#maker_url">Validate</div>
+				</div>
+			</div>
+
+			<div id="maker_url" class="col-xs-offset-1 col-xs-10"></div>
+		</form>
+	</section>
+
+	<section class="" id="chart">
+		<iframe id="chart_iframe" src="" frameborder="0"></iframe>
+	</section> 
+
+</body>
+</html>

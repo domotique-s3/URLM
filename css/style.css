@@ -1,0 +1,32 @@
+#maker {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 450px;
+	height: 100%;
+	background-color: #F7F7F7;
+	font-size: 12px !important;
+}
+
+#chart{
+	position: absolute;
+	top: 0;
+	left: 450px;
+	right: 0;
+}
+
+#maker_date-start-input,
+#maker_date-end-input {
+	border-radius: 4px;
+}
+
+#maker .bg-info {
+	margin: 5px 0;
+   	padding-top: 16px;
+    	padding-bottom: 1px;
+
+}
+
+#maker_url{
+	word-break : break-all;
+}
