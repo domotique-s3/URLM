@@ -5,7 +5,7 @@ function CookieManager() {
     "use strict";
     this.getCookie = function (name) {
         var cookiestring = new RegExp(name + "[^;]+").exec(document.cookie);
-        return unescape(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./, "") : "");
+        return decodeURIComponent(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./, "") : "");
     };
 
     this.getCookies = function (names) {
@@ -24,8 +24,8 @@ function CookieManager() {
 
     this.setCookies = function (object) {
         var self = this;
-        $.each(object, function (val) {
-            self.setCookie(val.name, val.value, val.lifetime);
+        $(object).each(function () {
+            self.setCookie(this.name, this.value, this.lifetime);
         });
     };
 }
