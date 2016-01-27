@@ -1,4 +1,3 @@
-/* jshint jquery: true */
 /*global $:false */
 /*jshint camelcase: false */
 /*jslint devel: true */
