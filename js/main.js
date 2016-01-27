@@ -1,4 +1,9 @@
-window.onload = function(){
-	var pageBuilder = new PageBuilder();
-	pageBuilder.init();
+/*jslint browser:true */
+/*global
+    PageBuilder
+ */
+window.onload = function () {
+    "use strict";
+    var pageBuilder = new PageBuilder();
+    pageBuilder.init();
 };
