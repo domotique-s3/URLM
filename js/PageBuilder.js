@@ -16,9 +16,9 @@ function PageBuilder() {
         "maker_date-end-input"
     ],
         insertAfter_newSensor = function (appendIn) {
-            var remove_sensor = $('.remove-sensor');
             $.get('../template/newSensor.html', function (data) {
                 $(data).insertAfter(appendIn);
+                var remove_sensor = $('.remove-sensor');
                 remove_sensor.off();
                 remove_sensor.click(function () {
                     $(this).parent().parent().remove();
@@ -34,9 +34,9 @@ function PageBuilder() {
             });
         },
         insertAfter_newTable = function () {
-            var remove_table = $('.remove-table');
             $.get('../template/newTable.html', function (data) {
                 $(data).insertAfter($('.bg-info').last());
+                var remove_table = $('.remove-table');
                 remove_table.off();
                 remove_table.click(function () {
                     $(this).parent().parent().parent().remove();
