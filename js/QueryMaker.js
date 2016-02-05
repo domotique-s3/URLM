@@ -18,7 +18,7 @@ function QueryMaker() {
             //sensors += index + '[';
             result2.sensors[index] = [];
             for (i = 0; i < val.length; i = i + 1) {
-                result2.sensors[index].push(val[i].id);
+                result2.sensors[index].push(val[i].id + '_' + val[i].type);
                 /*sensors += val[i].id;
                 if (i !== val.length - 1) {
                     sensors += ',';
@@ -65,13 +65,23 @@ function QueryMaker() {
      * Catch all sensors associated to their table
      */
         findTableWithSensors = function () {
-            $.each($('.bg-info'), function (table) {
+            var type = '', id;
+            $('.bg-info').each(function(a, table) {
+                console.log(table);
                 tableWithSensors[$(table).find('#maker_table-name-input').val()] = [];
-                $.each($(table).find('.maker_sensor'), function (sensor) {
-                    tableWithSensors[$(table).find('#maker_table-name-input').val()].push({
-                        id : $(sensor).find('.maker_sensor-input').val(),
-                        type : $(sensor).find('.maker_sensor-select').val()
-                    });
+                $(table).each(function(b, sensor) {
+                    if($(sensor).find('.maker_sensor-input').val().trim() !== ""){
+                        id = $(sensor).find('.maker_sensor-input').val();
+                        if($(sensor).find('.maker_sensor-select').val() === 'default'){
+                            type = 'l';
+                        }
+                        type = $(sensor).find('.maker_sensor-select').val();
+
+                        tableWithSensors[$(table).find('#maker_table-name-input').val()].push({
+                            'id' : id,
+                            'type' : type
+                        });
+                    }
                 });
             });
         },
