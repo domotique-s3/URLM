@@ -15,6 +15,7 @@ function PageBuilder() {
         "maker_date-start-input",
         "maker_date-end-input"
     ],
+        dbCharts_path = '',
         insertAfter_newSensor = function (appendIn) {
             $.get('../template/newSensor.html', function (data) {
                 $(data).insertAfter(appendIn);
@@ -44,6 +45,19 @@ function PageBuilder() {
                 addEvent_addSensor();
             });
         },
+
+        initialize_dbChartsPath = function () {
+
+            $.get('../config.json', function(data) {
+                dbCharts_path = data.path;
+            }).fail(function(err){
+                if(err.status === 404){
+                    throw new Error("Config not found");
+                }
+                throw new Error("An error occurred");
+            });
+        },
+
         initialize_inputFromCookies = function () {
             var cookies = new CookieManager().getCookies(cookiesToGet);
             $.each(cookies, function (index, val) {
@@ -58,6 +72,7 @@ function PageBuilder() {
                 $('[data-toggle="tooltip"]').tooltip();
             });
         },
+
         addEvent_validate = function () {
             $('#maker_validate').click(function () {
                 var qm = new QueryMaker(), cookies = [];
@@ -68,6 +83,7 @@ function PageBuilder() {
                     cookies.push({"name": this, "value": $("#" + this).val(), "lifetime": 7});
                 });
                 new CookieManager().setCookies(cookies);
+                $('#chart_iframe').attr('src', dbCharts_path + '?' + qm.getURL());
             });
         },
         addEvent_datetimepicker = function () {
@@ -98,11 +114,13 @@ function PageBuilder() {
 
 
     this.init = function () {
+        $.ajaxSetup({async:false, cache: false});
         addEvent_addSensor();
         addEvent_addTable();
         addEvent_datetimepicker();
         addEvent_validate();
         initialize_inputFromCookies();
+        initialize_dbChartsPath();
         addEvent_selectInputText();
         $('[data-toggle="tooltip"]').tooltip();
         new Clipboard('#maker_validate');
