@@ -5,8 +5,6 @@ function QueryMaker() {
     "use strict";
     var tableWithSensors = {}, columnName = {}, timestamp = {};
 
-
-
     /**
      * Construct and return URL
      */
@@ -93,20 +91,23 @@ function QueryMaker() {
             var date_start = $('#maker_date-start-input'),
                 date_end = $('#maker_date-end-input');
             if (date_start.val().trim() === "") {
-                date_start.parent().parent().addClass('has-error');
+                date_start.parent().parent().addClass('has-warning');
+            } else {
+                timestamp.start = date_start.val();
             }
             if (date_end.val().trim() === "") {
-                date_end.parent().parent().addClass('has-error');
+                date_end.parent().parent().addClass('has-warning');
+            } else {
+                timestamp.end = date_end.val();
             }
-            timestamp.startTime = date_start.val();
-            timestamp.endTime = date_end.val();
         };
 
     /**
      * Initialize this class
      */
     this.init = function () {
-        $('.form-group').removeClass('has-error');
+        $('.has-error').removeClass('has-error');
+        $('.has-warning').removeClass('has-warning');
         findTableWithSensors();
         findColumnName();
         findTimestamp();
