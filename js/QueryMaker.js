@@ -67,21 +67,24 @@ function QueryMaker() {
         findTableWithSensors = function () {
             var type = '', id;
             $('.bg-info').each(function(a, table) {
-                console.log(table);
+                console.log($(table).find('#maker_table-name-input'));
                 tableWithSensors[$(table).find('#maker_table-name-input').val()] = [];
                 $(table).each(function(b, sensor) {
-                    if($(sensor).find('.maker_sensor-input').val().trim() !== ""){
-                        id = $(sensor).find('.maker_sensor-input').val();
-                        if($(sensor).find('.maker_sensor-select').val() === 'default'){
-                            type = 'l';
-                        }
-                        type = $(sensor).find('.maker_sensor-select').val();
+                    $($(sensor).find('.maker_sensor-input')).each(function(){
+                        if($(this).val().trim() !== ""){
+                            id = $(this).val();
+                            if($(sensor).find('.maker_sensor-select').val() === 'default'){
+                                type = 'l';
+                            }
+                            type = $(sensor).find('.maker_sensor-select').val();
 
-                        tableWithSensors[$(table).find('#maker_table-name-input').val()].push({
-                            'id' : id,
-                            'type' : type
-                        });
-                    }
+                            tableWithSensors[$(table).find('#maker_table-name-input').val()].push({
+                                'id' : id,
+                                'type' : type
+                            });
+                        }
+                    });
+
                 });
             });
         },
@@ -110,8 +113,9 @@ function QueryMaker() {
         findTableWithSensors();
         findColumnName();
         findTimestamp();
-        console.log(columnName);
+        /*console.log(columnName);
         console.log(tableWithSensors);
         console.log(timestamp);
+        */
     };
 }
