@@ -63,26 +63,26 @@ function QueryMaker() {
      * Catch all sensors associated to their table
      */
         findTableWithSensors = function () {
-            var type = '', id;
+            var type = '', id, tableName;
             $('.bg-info').each(function(a, table) {
-                console.log($(table).find('#maker_table-name-input'));
-                tableWithSensors[$(table).find('#maker_table-name-input').val()] = [];
-                $(table).each(function(b, sensor) {
-                    $($(sensor).find('.maker_sensor-input')).each(function(){
-                        if($(this).val().trim() !== ""){
-                            id = $(this).val();
-                            if($(sensor).find('.maker_sensor-select').val() === 'default'){
-                                type = 'l';
-                            }
-                            type = $(sensor).find('.maker_sensor-select').val();
+                tableName = $(table).find('#maker_table-name-input').val()
 
-                            tableWithSensors[$(table).find('#maker_table-name-input').val()].push({
-                                'id' : id,
-                                'type' : type
-                            });
+                tableWithSensors[tableName] = [];
+
+                $($(table).find('.maker_sensor')).each(function(b, sensor) {
+                    
+                    if($(sensor).find('.maker_sensor-input').val().trim() !== ""){
+                        id = $(sensor).find('.maker_sensor-input').val();
+                        if($(sensor).find('.maker_sensor-select').val() === 'default'){
+                            type = 'l';
                         }
-                    });
+                        type = $(sensor).find('.maker_sensor-select').val();
 
+                        tableWithSensors[tableName].push({
+                            'id' : id,
+                            'type' : type
+                        });
+                    }
                 });
             });
         },
