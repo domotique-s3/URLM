@@ -50,8 +50,8 @@ function PageBuilder() {
 
             $.get('../config.json', function(data) {
                 dbCharts_path = data.path;
-            }).fail(function(err){
-                if(err.status === 404){
+            }).fail(function (err) {
+                if (err.status === 404) {
                     throw new Error("Config not found");
                 }
                 throw new Error("An error occurred");
@@ -78,12 +78,13 @@ function PageBuilder() {
                 var qm = new QueryMaker(), cookies = [];
                 qm.init();
 
-                $('#maker_url').text(qm.getURL());
+                $('#maker_url').text(dbCharts_path + "?" + qm.getURL());
                 $(cookiesToGet).each(function () {
                     cookies.push({"name": this, "value": $("#" + this).val(), "lifetime": 7});
                 });
                 new CookieManager().setCookies(cookies);
                 $('#chart_iframe').attr('src', dbCharts_path + '?' + qm.getURL());
+                var clipboard = new Clipboard('#maker_validate');
             });
         },
         addEvent_datetimepicker = function () {
@@ -123,7 +124,6 @@ function PageBuilder() {
         initialize_dbChartsPath();
         addEvent_selectInputText();
         $('[data-toggle="tooltip"]').tooltip();
-        new Clipboard('#maker_validate');
     };
 
 }
