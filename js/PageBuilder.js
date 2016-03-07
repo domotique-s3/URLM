@@ -48,7 +48,7 @@ function PageBuilder() {
 
         initialize_dbChartsPath = function () {
 
-            $.get('../config.json', function(data) {
+            $.get('config.json', function(data) {
                 dbCharts_path = data.path;
             }).fail(function (err) {
                 if (err.status === 404) {
