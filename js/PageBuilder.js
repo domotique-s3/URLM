@@ -17,7 +17,7 @@ function PageBuilder() {
     ],
         dbCharts_path = '',
         insertAfter_newSensor = function (appendIn) {
-            $.get('../template/newSensor.html', function (data) {
+            $.get('template/newSensor.html', function (data) {
                 $(data).insertAfter(appendIn);
                 var remove_sensor = $('.remove-sensor');
                 remove_sensor.off();
@@ -35,7 +35,7 @@ function PageBuilder() {
             });
         },
         insertAfter_newTable = function () {
-            $.get('../template/newTable.html', function (data) {
+            $.get('template/newTable.html', function (data) {
                 $(data).insertAfter($('.bg-info').last());
                 var remove_table = $('.remove-table');
                 remove_table.off();
